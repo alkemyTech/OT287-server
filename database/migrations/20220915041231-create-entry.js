@@ -18,7 +18,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       categoryId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       type: {
         type: Sequelize.STRING
@@ -30,10 +36,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
   down: async (queryInterface, Sequelize) => {

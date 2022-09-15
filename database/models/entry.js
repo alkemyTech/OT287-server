@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Entry.belongsTo(models.Category, {as: "categoryId"} )
+      
     }
   };
   Entry.init({
@@ -19,10 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     categoryId: DataTypes.INTEGER,
     type: DataTypes.STRING,
-    deletedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Entry',
+    paranoid: true,
+    timestamps: true,
   });
   return Entry;
 };
