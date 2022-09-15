@@ -17,7 +17,7 @@ module.exports = {
       order: {
         type: Sequelize.INTEGER
       },
-      organiztionId: {
+      organizationId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Organizations',  
