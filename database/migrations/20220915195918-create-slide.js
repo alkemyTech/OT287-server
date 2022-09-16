@@ -22,12 +22,7 @@ module.exports = {
         references: {
           model: 'Organizations',  
           key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      },
-      deletedAt: {
-        type: Sequelize.DATE
+        }
       },
       createdAt: {
         allowNull: false,
