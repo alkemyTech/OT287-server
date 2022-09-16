@@ -20,9 +20,6 @@ module.exports = {
       message: {
         type: Sequelize.STRING
       },
-      deleteAt: {
-        type: Sequelize.DATE
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
