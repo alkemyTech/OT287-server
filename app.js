@@ -7,7 +7,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const indexRouter = require('./routes/index')
-const organizationsRouter = require('./routes/organizationsRouter')
+const organizationsRouter = require('./routes/organizations')
 
 const port = process.env.PORT || 3000
 

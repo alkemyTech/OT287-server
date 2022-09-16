@@ -1,5 +1,5 @@
 const createHttpError = require('http-errors')
-const { getInfo } = require('../services/organizationsService')
+const { getInfo } = require('../services/organizations')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
