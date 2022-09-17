@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Entry.belongsTo(models.Category, {as: "categoryId"} )
+      Entry.belongsTo(models.Category, {as: "categories"} )
       
     }
   };
@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     content: DataTypes.STRING,
     image: DataTypes.STRING,
-    categoryId: DataTypes.INTEGER,
     type: DataTypes.STRING,
+    categoryId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Entry',
     paranoid: true,
-    timestamps: true,
+    timestamps: false,
   });
   return Entry;
 };
