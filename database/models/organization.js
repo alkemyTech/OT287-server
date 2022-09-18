@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Organization.hasMany(models.Slide, {
         foreingKey: 'slideId',
-        as: "slide"
+        as: "slides"
       })      
     }
   }
