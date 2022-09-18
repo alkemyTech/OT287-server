@@ -1,28 +1,17 @@
 const createHttpError = require('http-errors')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
-const { postNews } = require('../services/news')
+const { postEntry } = require('../services/news')
 
 module.exports = {
-  postNews: catchAsync(async (req, res, next) => {
-    const {
-      name,
-      content,
-      image,
-    } = req.body
+  postEntry: catchAsync(async (req, res, next) => {
     try {
-      if (!req.body.name) {
-        console.log('no puse name')
-      }
-      else {
-        const response = await postNews(req.body)
-        // console.log(response)
-        endpointResponse({
-          res,
-          message: 'post test succesfull',
-          body: response,
-        })
-      }
+      const response = await postEntry(req.body)
+      endpointResponse({
+        res,
+        message: 'post test succesfull',
+        body: response,
+      })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
