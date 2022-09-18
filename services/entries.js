@@ -21,7 +21,6 @@ exports.getNews = async () => {
 exports.getNewById = async (idNew) => {
   try {
     const getNew = await Entry.findByPk(idNew)
-    console.log('hola')
     if (!getNew) {
       throw new ErrorObject('No news found', 404)
     }
