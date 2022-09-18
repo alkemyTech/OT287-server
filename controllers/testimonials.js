@@ -2,7 +2,6 @@ const createHttpError = require('http-errors')
 const { createTestimonial } = require('../services/testimonials')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
-const { validationResult } = require('express-validator')
 
 module.exports = {
   post: catchAsync(async (req, res, next) => {
