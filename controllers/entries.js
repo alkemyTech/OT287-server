@@ -17,14 +17,11 @@ module.exports = {
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving delete news] - [news - POST]: ${error.message}`,
+        `[Error retrieving news] - [news - DELETE]: ${error.message}`,
       )
       next(httpError)
     }
   }),
-}
-
-module.exports = {
   get: catchAsync(async (req, res, next) => {
     try {
       const response = await getNews()
