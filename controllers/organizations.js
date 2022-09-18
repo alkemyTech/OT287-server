@@ -1,21 +1,22 @@
 const createHttpError = require('http-errors')
-const { editActivity } = require('../services/activities')
+const { getInfo } = require('../services/organizations')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
+// Method to get an organization public info
 module.exports = {
-  put: catchAsync(async (req, res, next) => {
+  get: catchAsync(async (req, res, next) => {
     try {
-      const response = await editActivity(req.params.id, req.body)
+      const response = await getInfo(req.params.id)
       endpointResponse({
         res,
-        message: 'Activity updated and retrieved successfully',
+        message: 'Info retrieved successfully',
         body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error updating activity] - [activity - PUT]: ${error.message}`,
+        `[Error retrieving info] - [index - GET]: ${error.message}`,
       )
       next(httpError)
     }
