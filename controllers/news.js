@@ -1,7 +1,7 @@
 const createHttpError = require('http-errors')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
-const { postEntry } = require('../services/news')
+const { postEntry } = require('../services/entries')
 
 module.exports = {
   postEntry: catchAsync(async (req, res, next) => {
