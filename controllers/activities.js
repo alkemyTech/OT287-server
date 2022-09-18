@@ -6,9 +6,7 @@ const { catchAsync } = require('../helpers/catchAsync')
 module.exports = {
   put: catchAsync(async (req, res, next) => {
     try {
-      const { id } = req.params
-      const dataToUpdate = req.body
-      const response = await editActivity(id, dataToUpdate)
+      const response = await editActivity(req.params.id, req.body)
       endpointResponse({
         res,
         message: 'Activity updated and retrieved successfully',
