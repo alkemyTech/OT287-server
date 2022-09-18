@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Organization extends Model {
     static associate(models) {
       Organization.hasMany(models.Slide, {
-        foreingKey: 'slideId',
+        foreingKey: 'organizationId',
         as: "slides"
       })      
     }
