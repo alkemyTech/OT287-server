@@ -7,16 +7,16 @@ const { validationResult } = require('express-validator')
 module.exports = {
   post: catchAsync(async (req, res, next) => {
     try {
-      const { errors } = validationResult(req);
-      if (errors.length) {
-        const {msg, param, value } = errors[0]
-        const httpError = createHttpError(
-          400,
-          `[Error retrieving Testimonial] - [Testimonial - POST]: ${msg} ${param} is ${value}`,
-        )
-        next(httpError)
-        return
-      }
+      // const { errors } = validationResult(req);
+      // if (errors.length) {
+      //   const {msg, param, value } = errors[0]
+      //   const httpError = createHttpError(
+      //     400,
+      //     `[Error retrieving Testimonial] - [Testimonial - POST]: ${msg} ${param} is ${value}`,
+      //   )
+      //   next(httpError)
+      //   return
+      // }
       const {name,content,image} = req.body
       const response = await createTestimonial(name,content,image)
       endpointResponse({

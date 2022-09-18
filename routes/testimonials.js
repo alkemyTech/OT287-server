@@ -1,12 +1,12 @@
 const express = require('express')
 const { post } = require('../controllers/testimonials')
-const {body} = require('express-validator')
-
+const validationTestimonialSchema  = require('../schemas/testimonials')
+const validationTestimonial  = require('../middlewares/testimonials')
 const router = express.Router()
 
 router.post('/',
-    body('name').not().isEmpty(),
-    body('content').not().isEmpty(),
+    validationTestimonialSchema(),
+    validationTestimonial,
     post
 )
 
