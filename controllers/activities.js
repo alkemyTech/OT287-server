@@ -1,5 +1,5 @@
 const createHttpError = require('http-errors')
-const { putActivity } = require('../services/activities')
+const { editActivity } = require('../services/activities')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
@@ -8,7 +8,7 @@ module.exports = {
     try {
       const { id } = req.params
       const dataToUpdate = req.body
-      const response = await putActivity(id, dataToUpdate)
+      const response = await editActivity(id, dataToUpdate)
       endpointResponse({
         res,
         message: 'Activity updated and retrieved successfully',

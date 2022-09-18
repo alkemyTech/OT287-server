@@ -1,7 +1,7 @@
 const { ErrorObject } = require('../helpers/error')
 const { Activity } = require('../database/models')
 
-exports.putActivity = async (id, data) => {
+exports.editActivity = async (id, data) => {
   try {
     const activity = await Activity.findByPk(id)
     if (!activity) {
