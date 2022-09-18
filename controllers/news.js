@@ -1,12 +1,12 @@
 const createHttpError = require('http-errors')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
-const { postEntry } = require('../services/entries')
+const { createEntry } = require('../services/entries')
 
 module.exports = {
-  postEntry: catchAsync(async (req, res, next) => {
+  createEntry: catchAsync(async (req, res, next) => {
     try {
-      const response = await postEntry(req.body)
+      const response = await createEntry(req.body)
       endpointResponse({
         res,
         message: 'post test succesfull',
@@ -15,7 +15,7 @@ module.exports = {
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving index] - [index - GET]: ${error.message}`,
+        `[Error saving entry] - [entry - POST]: ${error.message}`,
       )
       next(httpError)
     }

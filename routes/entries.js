@@ -1,8 +1,8 @@
 const express = require('express')
-const { postEntry } = require('../controllers/news')
+const { createEntry } = require('../controllers/news')
 const { validateCreate } = require('../validators/entries')
 
 const router = express.Router()
 
-router.post('/', validateCreate, postEntry)
+router.post('/', validateCreate, createEntry)
 module.exports = router

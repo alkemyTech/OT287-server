@@ -1,7 +1,7 @@
 const { ErrorObject } = require('../helpers/error')
 const { Entry } = require('../database/models')
 
-exports.postEntry = async (data) => {
+exports.createEntry = async (data) => {
   try {
     const createNew = await Entry.create({
       name: data.name,
