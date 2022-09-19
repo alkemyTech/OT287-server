@@ -1,4 +1,4 @@
-exports.validationResultsSchema = {
+exports.entriesSchema = {
   name: {
     notEmpty: {
       errorMessage: 'The name field cannot be empty',
