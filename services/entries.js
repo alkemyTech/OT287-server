@@ -1,5 +1,5 @@
 const { ErrorObject } = require('../helpers/error')
-const { Entry, Category } = require('../database/models')
+const { Entry } = require('../database/models')
 
 module.exports = {
   getNews: async () => {
@@ -18,21 +18,14 @@ module.exports = {
       throw new ErrorObject(error.message, error.statusCode || 500)
     }
   },
-  editEntry: async (id, entryValues) => {
+  editNews: async (id, newsValues) => {
     try {
-      const entryToUpdate = await Entry.findByPk(id)
-      if (!entryToUpdate) {
-        throw new ErrorObject('No entry found', 404)
+      const newsToUpdate = await Entry.findByPk(id)
+      if (!newsToUpdate) {
+        throw new ErrorObject('No news found', 404)
       }
-      if (entryValues.categoryId) {
-        const categoryIdToReplace = await Category.findByPk(entryValues.categoryId)
-        if (!categoryIdToReplace) {
-          throw new ErrorObject('No categoryId found', 404)
-        }
-        await entryToUpdate.setCategory(entryValues.categoryId)
-      }
-      const entryUpdated = await entryToUpdate.update({ ...entryValues })
-      return entryUpdated
+      const newsUpdated = await newsToUpdate.update({ ...newsValues })
+      return newsUpdated
     } catch (error) {
       throw new ErrorObject(error.message, error.statusCode || 500)
     }

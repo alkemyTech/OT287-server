@@ -1,5 +1,5 @@
 const createHttpError = require('http-errors')
-const { getNews, editEntry } = require('../services/entries')
+const { getNews, editNews } = require('../services/entries')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
@@ -22,10 +22,10 @@ module.exports = {
   }),
   put: catchAsync(async (req, res, next) => {
     try {
-      const response = await editEntry(req.params.id, req.body)
+      const response = await editNews(req.params.id, req.body)
       endpointResponse({
         res,
-        message: 'Entry updated successfully',
+        message: 'News updated successfully',
         body: response,
       })
     } catch (error) {
