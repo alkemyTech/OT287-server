@@ -1,9 +1,14 @@
 const { checkSchema } = require('express-validator')
-const { handleValidation } = require('../helpers/handleValidation')
+const { validationResult } = require('express-validator')
 
 exports.schemaValidation = (schema) => [
   checkSchema(schema),
   (req, res, next) => {
-    handleValidation(req, res, next)
+    try {
+      validationResult(req).throw()
+      return next()
+    } catch (err) {
+      return res.status(400).send({ errors: err.array() })
+    }
   },
 ]
