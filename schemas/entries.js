@@ -1,5 +1,5 @@
 const { check } = require('express-validator')
-const { validateEntry } = require('../helpers/validateEntryHelper')
+const { validateEntry } = require('../middlewares/validateEntry')
 
 const validateCreate = [
   check('name')
