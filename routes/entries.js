@@ -4,9 +4,7 @@ const { get } = require('../controllers/entries')
 
 const router = express.Router()
 
-// Endpoint to delete a new by id
-router.delete('/:id', destroy)
-
 router.get('/', get)
+router.delete('/:id', destroy)
 
 module.exports = router

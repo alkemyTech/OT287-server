@@ -6,22 +6,6 @@ const { catchAsync } = require('../helpers/catchAsync')
 
 // Method to get an organization public info
 module.exports = {
-  destroy: catchAsync(async (req, res, next) => {
-    try {
-      const response = await deleteById(req.params.id)
-      endpointResponse({
-        res,
-        message: 'Info retrieved successfully',
-        body: response,
-      })
-    } catch (error) {
-      const httpError = createHttpError(
-        error.statusCode,
-        `[Error retrieving news] - [news - DELETE]: ${error.message}`,
-      )
-      next(httpError)
-    }
-  }),
   get: catchAsync(async (req, res, next) => {
     try {
       const response = await getNews()
@@ -34,6 +18,22 @@ module.exports = {
       const httpError = createHttpError(
         error.statusCode,
         `[Error retrieving news] - [news - GET]: ${error.message}`,
+      )
+      next(httpError)
+    }
+  }),
+  destroy: catchAsync(async (req, res, next) => {
+    try {
+      const response = await deleteById(req.params.id)
+      endpointResponse({
+        res,
+        message: 'Info retrieved successfully',
+        body: response,
+      })
+    } catch (error) {
+      const httpError = createHttpError(
+        error.statusCode,
+        `[Error retrieving news] - [news - DELETE]: ${error.message}`,
       )
       next(httpError)
     }
