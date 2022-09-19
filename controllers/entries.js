@@ -8,6 +8,22 @@ const { createEntry } = require('../services/entries')
 
 // Method to get an organization public info
 module.exports = {
+  get: catchAsync(async (req, res, next) => {
+    try {
+      const response = await getNews()
+      endpointResponse({
+        res,
+        message: 'News retrieved successfully',
+        body: response,
+      })
+    } catch (error) {
+      const httpError = createHttpError(
+        error.statusCode,
+        `[Error retrieving news] - [news - GET]: ${error.message}`,
+      )
+      next(httpError)
+    }
+  }),
   post: catchAsync(async (req, res, next) => {
     try {
       const response = await createEntry(req.body)
