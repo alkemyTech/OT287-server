@@ -1,23 +1,40 @@
 const { ErrorObject } = require('../helpers/error')
 const { Entry, Category } = require('../database/models')
 
-// example of a service
-exports.editEntry = async (id, entryValues) => {
-  try {
-    const entryToUpdate = await Entry.findByPk(id)
-    if (!entryToUpdate) {
-      throw new ErrorObject('No entry found', 404)
-    }
-    if (entryValues.categoryId) {
-      const categoryIdToReplace = await Category.findByPk(entryValues.categoryId)
-      if (!categoryIdToReplace) {
-        throw new ErrorObject('No categoryId found', 404)
+module.exports = {
+  getNews: async () => {
+    try {
+      const news = await Entry.findAll({
+        attributes: ['name', 'image', 'createdAt'],
+        where: {
+          type: 'news',
+        },
+      })
+      if (!news) {
+        throw new ErrorObject('No news found', 404)
       }
-      await entryToUpdate.setCategory(entryValues.categoryId)
+      return news
+    } catch (error) {
+      throw new ErrorObject(error.message, error.statusCode || 500)
     }
-    const entryUpdated = await entryToUpdate.update({ ...entryValues })
-    return entryUpdated
-  } catch (error) {
-    throw new ErrorObject(error.message, error.statusCode || 500)
-  }
+  },
+  editEntry: async (id, entryValues) => {
+    try {
+      const entryToUpdate = await Entry.findByPk(id)
+      if (!entryToUpdate) {
+        throw new ErrorObject('No entry found', 404)
+      }
+      if (entryValues.categoryId) {
+        const categoryIdToReplace = await Category.findByPk(entryValues.categoryId)
+        if (!categoryIdToReplace) {
+          throw new ErrorObject('No categoryId found', 404)
+        }
+        await entryToUpdate.setCategory(entryValues.categoryId)
+      }
+      const entryUpdated = await entryToUpdate.update({ ...entryValues })
+      return entryUpdated
+    } catch (error) {
+      throw new ErrorObject(error.message, error.statusCode || 500)
+    }
+  },
 }
