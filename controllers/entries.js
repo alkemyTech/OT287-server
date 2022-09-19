@@ -27,7 +27,7 @@ module.exports = {
       const response = await deleteById(req.params.id)
       endpointResponse({
         res,
-        message: 'Info retrieved successfully',
+        message: 'New deleted successfully',
         body: response,
       })
     } catch (error) {
