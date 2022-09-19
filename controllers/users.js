@@ -1,7 +1,6 @@
 const createHttpError = require('http-errors')
 const { catchAsync } = require('../helpers/catchAsync')
 const { endpointResponse } = require('../helpers/success')
-// const { User } = require('../database/models')
 const { createUser } = require('../services/users')
 
 module.exports = {

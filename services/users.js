@@ -28,9 +28,9 @@ module.exports = {
         image,
       })
       const response = {
-        nombre: newUser.firstName,
-        apellido: newUser.lastName,
-        correo: newUser.email,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        email: newUser.email,
       }
       return response
     } catch (error) {
