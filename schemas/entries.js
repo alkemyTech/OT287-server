@@ -1,17 +1,17 @@
-const { check } = require('express-validator')
-
-const validationResultsSchema = [
-  check('name')
-    .exists()
-    .not()
-    .isEmpty(),
-  check('content')
-    .exists()
-    .not()
-    .isEmpty(),
-  check('image')
-    .not()
-    .isEmpty(),
-]
-
-module.exports = { validationResultsSchema }
+exports.validationResultsSchema = {
+  name: {
+    notEmpty: {
+      errorMessage: 'The name field cannot be empty',
+    },
+  },
+  content: {
+    notEmpty: {
+      errorMessage: 'The content field cannot be empty',
+    },
+  },
+  image: {
+    notEmpty: {
+      errorMessage: 'The image field cannot be empty',
+    },
+  },
+}
