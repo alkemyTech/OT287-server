@@ -2,6 +2,7 @@ const express = require('express')
 const { get } = require('../controllers/index')
 const organizationsRouter = require('./organizations')
 const activitiesRouter = require('./activities')
+const contactsRouter = require('./contacts')
 const entriesRouter = require('./entries')
 
 const router = express.Router()
@@ -10,6 +11,7 @@ const router = express.Router()
 router.get('/', get)
 router.use('/organizations', organizationsRouter)
 router.use('/activities', activitiesRouter)
+router.use('/contacts', contactsRouter)
 router.use('/news', entriesRouter)
 
 module.exports = router
