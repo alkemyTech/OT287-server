@@ -29,7 +29,7 @@ module.exports = {
       const response = await createEntry(req.body)
       endpointResponse({
         res,
-        message: 'post test succesfull',
+        message: 'entry successfully created',
         body: response,
       })
     } catch (error) {
