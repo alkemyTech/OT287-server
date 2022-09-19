@@ -1,7 +1,6 @@
 const { check } = require('express-validator')
-const { validateEntry } = require('../middlewares/validateEntry')
 
-const validateCreate = [
+const validationResultsSchema = [
   check('name')
     .exists()
     .not()
@@ -13,9 +12,6 @@ const validateCreate = [
   check('image')
     .not()
     .isEmpty(),
-  (req, res, next) => {
-    validateEntry(req, res, next)
-  },
 ]
 
-module.exports = { validateCreate }
+module.exports = { validationResultsSchema }

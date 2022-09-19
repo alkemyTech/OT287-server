@@ -1,11 +1,12 @@
 const express = require('express')
 const { get } = require('../controllers/index')
 const { post } = require('../controllers/entries')
-const { validateCreate } = require('../schemas/entries')
+const { validationResultsSchema } = require('../schemas/entries')
+const { validateEntry } = require('../middlewares/validateEntry')
 
 const router = express.Router()
 
-router.post('/', validateCreate, post)
+router.post('/', validationResultsSchema, validateEntry, post)
 
 router.get('/', get)
 
