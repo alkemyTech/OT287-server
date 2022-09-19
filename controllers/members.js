@@ -16,7 +16,7 @@ module.exports = {
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving members] - [news - GET]: ${error.message}`,
+        `[Error retrieving members] - [members - GET]: ${error.message}`,
       )
       next(httpError)
     }
