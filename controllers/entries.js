@@ -1,5 +1,5 @@
 const createHttpError = require('http-errors')
-const { destroyNewId } = require('../services/entries')
+const { deleteById } = require('../services/entries')
 const { getNews } = require('../services/entries')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
@@ -8,7 +8,7 @@ const { catchAsync } = require('../helpers/catchAsync')
 module.exports = {
   destroy: catchAsync(async (req, res, next) => {
     try {
-      const response = await destroyNewId(req.params.id)
+      const response = await deleteById(req.params.id)
       endpointResponse({
         res,
         message: 'Info retrieved successfully',
