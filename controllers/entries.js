@@ -33,7 +33,7 @@ module.exports = {
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving news] - [news - DELETE]: ${error.message}`,
+        `[Error deleting news] - [news - DELETE]: ${error.message}`,
       )
       next(httpError)
     }
