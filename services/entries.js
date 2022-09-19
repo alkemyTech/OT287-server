@@ -10,7 +10,6 @@ exports.getNews = async () => {
         type: 'news',
       },
     })
-
     if (!news) {
       throw new ErrorObject('No news found', 404)
     }
@@ -19,7 +18,6 @@ exports.getNews = async () => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
-
 exports.getNewById = async (idNew) => {
   try {
     const getNew = await Entry.findByPk(idNew)
@@ -31,7 +29,6 @@ exports.getNewById = async (idNew) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
-
 exports.deleteById = async (entryId) => {
   try {
     const entry = await Entry.destroy({ where: { id: entryId } })
@@ -39,6 +36,18 @@ exports.deleteById = async (entryId) => {
       throw new ErrorObject('No entryId found to delete', 404)
     }
     return entry
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+exports.editNews = async (id, newsValues) => {
+  try {
+    const newsToUpdate = await Entry.findByPk(id)
+    if (!newsToUpdate) {
+      throw new ErrorObject('No news found', 404)
+    }
+    const newsUpdated = await newsToUpdate.update({ ...newsValues })
+    return newsUpdated
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }

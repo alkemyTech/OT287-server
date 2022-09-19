@@ -1,6 +1,7 @@
 const createHttpError = require('http-errors')
-const { getNews, getNewById } = require('../services/entries') 
-const { deleteById } = require('../services/entries')
+const {
+  getNews, getNewById, editNews, deleteById,
+} = require('../services/entries')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
@@ -38,7 +39,7 @@ module.exports = {
       next(httpError)
     }
   }),
-   destroy: catchAsync(async (req, res, next) => {
+  destroy: catchAsync(async (req, res, next) => {
     try {
       const response = await deleteById(req.params.id)
       endpointResponse({
@@ -50,6 +51,22 @@ module.exports = {
       const httpError = createHttpError(
         error.statusCode,
         `[Error deleting news] - [news - DELETE]: ${error.message}`,
+      )
+      next(httpError)
+    }
+  }),
+  put: catchAsync(async (req, res, next) => {
+    try {
+      const response = await editNews(req.params.id, req.body)
+      endpointResponse({
+        res,
+        message: 'News updated successfully',
+        body: response,
+      })
+    } catch (error) {
+      const httpError = createHttpError(
+        error.statusCode,
+        `[Error updating news] - [index - PUT]: ${error.message}`,
       )
       next(httpError)
     }
