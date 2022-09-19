@@ -5,7 +5,7 @@ const handleValidation = (req, res, next) => {
     validationResult(req).throw()
     return next()
   } catch (err) {
-    return res.status(403).send({ errors: err.array() })
+    return res.status(400).send({ errors: err.array() })
   }
 }
 
