@@ -1,10 +1,10 @@
 const express = require('express')
 
 const router = express.Router()
-const { validateUser } = require('../schemas/users')
-const { postUser } = require('../controllers/users')
+const { users } = require('../schemas/users')
+const { post } = require('../controllers/users')
+const { validate } = require('../middlewares/validations')
 
-// Falta agregar un middleware
-router.post('/register', validateUser, postUser)
+router.post('/register', validate(users), post)
 
 module.exports = router

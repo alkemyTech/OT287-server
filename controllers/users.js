@@ -4,7 +4,7 @@ const { endpointResponse } = require('../helpers/success')
 const { createUser } = require('../services/users')
 
 module.exports = {
-  postUser: catchAsync(async (req, res, next) => {
+  post: catchAsync(async (req, res, next) => {
     try {
       const response = await createUser(req.body)
       endpointResponse({
