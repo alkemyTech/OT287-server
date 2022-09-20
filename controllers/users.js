@@ -9,7 +9,7 @@ module.exports = {
       const response = await createUser(req.body)
       endpointResponse({
         res,
-        message: 'Usuario creado',
+        message: 'User Created Successfully',
         body: response,
       })
     } catch (error) {
