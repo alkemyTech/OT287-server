@@ -13,3 +13,12 @@ exports.editActivity = async (id, data) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
+
+exports.createActivity = async (newActivity) => {
+  try {
+    await Activity.create(newActivity)
+    return
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
