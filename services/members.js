@@ -24,3 +24,12 @@ exports.deleteMember = async (id) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
+
+exports.createMember = async (data) => {
+  try {
+    await Member.create(data)
+    return
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
