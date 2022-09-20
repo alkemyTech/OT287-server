@@ -19,6 +19,10 @@ module.exports = {
       const httpError = createHttpError(
         error.statusCode,
         `[Error retrieving Testimonial] - [Testimonial - POST]: ${error.message}`,
+        )
+        next(httpError)
+    }
+  }),
   destroy: catchAsync(async (req, res, next) => {
     try {
       const response = await deleteById(req.params.id)
@@ -36,4 +40,4 @@ module.exports = {
     }
   }),
 }
-}
+
