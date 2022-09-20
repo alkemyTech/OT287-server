@@ -7,10 +7,11 @@ const { catchAsync } = require('../helpers/catchAsync')
 module.exports = {
   get: catchAsync(async (req, res, next) => {
     try {
-      await getMembers()
+      const response = await getMembers()
       endpointResponse({
         res,
         message: 'Members retrieved successfully',
+        body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
@@ -22,11 +23,10 @@ module.exports = {
   }),
   destroy: catchAsync(async (req, res, next) => {
     try {
-      const response = await deleteMember(req.params.id)
+      await deleteMember(req.params.id)
       endpointResponse({
         res,
         message: 'Member deleted successfully',
-        body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
