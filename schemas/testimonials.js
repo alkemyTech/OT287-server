@@ -1,10 +1,12 @@
-const { body } = require('express-validator')
-
-const validationTestimonialSchema = () => {
-    return [
-        body('name').notEmpty().withMessage('name is required'),
-        body('content').notEmpty().withMessage('content is required'),
-    ]
+exports.testimonial = {
+    name: {
+      notEmpty: {
+        errorMessage: 'The name field cannot be empty',
+      },
+    },
+    content: {
+      notEmpty: {
+        errorMessage: 'The content field cannot be empty',
+      },
+    }
 }
-
-module.exports = validationTestimonialSchema;
