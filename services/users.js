@@ -2,39 +2,32 @@ const bcrypt = require('bcrypt')
 const { ErrorObject } = require('../helpers/error')
 const { User } = require('../database/models')
 
-const encryptPassword = async (password) => {
+exports.createUser = async (data) => {
   try {
-    const stringPassword = password.toString()
-    return await bcrypt.hash(stringPassword, 10)
+    const emailExists = await User.findOne({ where: { email: data.email } })
+
+    if (emailExists) {
+      return null
+    }
+    const encryptedPassword = await bcrypt.hash(data.password.toString(), 10)
+
+    const newUser = await User.create({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: encryptedPassword,
+      image: data.image,
+    })
+
+    const response = {
+      code: 200,
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      email: newUser.email,
+      image: newUser.image,
+    }
+    return response
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
-}
-
-module.exports = {
-  createUser: async (data) => {
-    try {
-      const {
-        firstName, lastName, email, password, image,
-      } = data
-
-      const encrypted = await encryptPassword(password)
-
-      const newUser = await User.create({
-        firstName,
-        lastName,
-        email,
-        password: encrypted,
-        image,
-      })
-      const response = {
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        email: newUser.email,
-      }
-      return response
-    } catch (error) {
-      throw new ErrorObject(error.message, error.statusCode || 500)
-    }
-  },
 }

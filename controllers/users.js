@@ -7,11 +7,15 @@ module.exports = {
   post: catchAsync(async (req, res, next) => {
     try {
       const response = await createUser(req.body)
-      endpointResponse({
-        res,
-        message: 'User Created Successfully',
-        body: response,
-      })
+      if (!response) {
+        res.send({ code: 409, msg: 'Email already in use, try another email address' })
+      } else {
+        endpointResponse({
+          res,
+          message: 'User registered successfully',
+          body: response,
+        })
+      }
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
