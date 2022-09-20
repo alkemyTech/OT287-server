@@ -13,7 +13,7 @@ exports.createContact = async (data) => {
 exports.getContacts = async () => {
   try {
     const getContacts = await Contact.findAll()
-    if (!getContacts) {
+    if (!getContacts || getContacts.length === 0) {
       throw new ErrorObject('No contacts found', 404)
     }
     return getContacts
