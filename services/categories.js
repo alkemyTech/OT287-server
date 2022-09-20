@@ -10,6 +10,15 @@ exports.getCategories = async () => {
   }
 }
 
+exports.createCategory = async (data) => {
+  try {
+    await Category.create(data)
+    return
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+
 exports.updateCategory = async (id, updateInfo) => {
   try {
     const findCategory = await Category.findByPk(id)
