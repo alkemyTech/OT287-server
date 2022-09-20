@@ -14,3 +14,14 @@ exports.createTestimonial = async (name, content, image) => {
         throw new ErrorObject(error.message, error.statusCode || 500)
     }
 }
+exports.deleteById = async (testimonialId) => {
+  try {
+    const testimonial = await Testimonial.destroy({ where: { id: testimonialId } })
+    if (!testimonial) {
+      throw new ErrorObject('No testimonial id found to delete', 404)
+    }
+    return testimonial
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}

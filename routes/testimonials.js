@@ -9,5 +9,9 @@ router.post('/',
     validationTestimonial,
     post
 )
+const { destroy } = require('../controllers/testimonials')
+
+
+router.delete('/:id', destroy)
 
 module.exports = router
