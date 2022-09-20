@@ -7,9 +7,10 @@ exports.createUser = async (data) => {
     const emailExists = await User.findOne({ where: { email: data.email } })
 
     if (emailExists) {
-      return null
+      throw new ErrorObject('Email already exist', 404)
     }
-    const encryptedPassword = await bcrypt.hash(data.password.toString(), 10)
+
+    const encryptedPassword = await bcrypt.hash(data.password, 10)
 
     const newUser = await User.create({
       firstName: data.firstName,
@@ -20,7 +21,6 @@ exports.createUser = async (data) => {
     })
 
     const response = {
-      code: 200,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
       email: newUser.email,
