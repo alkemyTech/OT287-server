@@ -20,13 +20,7 @@ exports.createUser = async (data) => {
       image: data.image,
     })
 
-    const response = {
-      firstName: newUser.firstName,
-      lastName: newUser.lastName,
-      email: newUser.email,
-      image: newUser.image,
-    }
-    return response
+    return newUser
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
