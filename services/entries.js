@@ -1,7 +1,21 @@
 const { ErrorObject } = require('../helpers/error')
-const { Entry } = require('../database/models')
+const { Entry, Category } = require('../database/models')
 
-// Service to search an entry info in the database
+exports.createEntry = async (data) => {
+  try {
+    const getCategory = await Category.findByPk(data.categoryId)
+    const createNew = await Entry.create({
+      name: data.name,
+      content: data.content,
+      image: data.image,
+      categoryId: getCategory.id,
+      type: 'news',
+    })
+    return createNew
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
 exports.getNews = async () => {
   try {
     const news = await Entry.findAll({
