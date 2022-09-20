@@ -1,5 +1,4 @@
 const createHttpError = require('http-errors')
-const { deleteById } = require('../services/testimonials')
 const { deleteById, editTestimonial, createTestimonial } = require('../services/testimonials')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
