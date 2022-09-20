@@ -1,6 +1,5 @@
 const express = require('express')
-const { post } = require('../controllers/testimonials')
-const { destroy } = require('../controllers/testimonials')
+const { post, destroy } = require('../controllers/testimonials')
 const { testimonial }  = require('../schemas/testimonials')
 const { validate } = require('../middlewares/validations')
 
