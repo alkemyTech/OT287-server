@@ -1,51 +1,33 @@
-exports.users = {
+exports.register = {
   firstName: {
+    isString: { errorMessage: 'First name is not a string' },
     exists: {
-      errorMessage: 'Agregue un Nombre',
-    },
-    isLength: {
-      min: 3,
-      max: 30,
-      errorMessage: 'El rango del nombre debe ser entre 3 y 30 caracteres',
-    },
-    notEmpty: {
-      errorMessage: 'El campo no puede estar vacio',
+      errorMessage: 'firstName cannot be empty',
+      options: { checkFalsy: true },
     },
   },
   lastName: {
+    isString: { errorMessage: 'lastName is not a string' },
     exists: {
-      errorMessage: 'Agregue un Apellido',
-    },
-    isLength: {
-      min: 3,
-      max: 30,
-      errorMessage: 'El rango del apellido debe ser entre 3 y 30 caracteres',
-    },
-    notEmpty: {
-      errorMessage: 'El campo no puede estar vacio',
+      errorMessage: 'lastName cannot be empty',
+      options: { checkFalsy: true },
     },
   },
   email: {
+    isEmail: { errorMessage: 'invalid email' },
     exists: {
-      errorMessage: 'Agregue un email',
+      errorMessage: 'email cannot be empty',
+      options: { checkFalsy: true },
     },
-    notEmpty: {
-      errorMessage: 'El campo no puede estar vacio',
-    },
-    isEmail: {
-      errorMessage: 'El formato de correo es invalido',
-    },
+    isString: { errorMessage: 'email is not a string' },
   },
   password: {
+    isString: { errorMessage: 'password is not a string' },
     exists: {
-      errorMessage: 'Agregue una contraseña',
+      errorMessage: 'password cannot be empty',
+      options: { checkFalsy: true },
     },
-    isLength: {
-      min: 8,
-      errorMessage: 'La contraseña debe tener al menos 8 caracteres',
-    },
-    notEmpty: {
-      errorMessage: 'El campo no puede estar vacio',
-    },
+    isStrongPassword: true,
+    errorMessage: 'The password is weak',
   },
 }
