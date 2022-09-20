@@ -7,11 +7,10 @@ const { catchAsync } = require('../helpers/catchAsync')
 module.exports = {
   get: catchAsync(async (req, res, next) => {
     try {
-      const response = await getMembers()
+      await getMembers()
       endpointResponse({
         res,
         message: 'Members retrieved successfully',
-        body: response,
       })
     } catch (error) {
       const httpError = createHttpError(

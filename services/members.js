@@ -20,7 +20,6 @@ exports.deleteMember = async (id) => {
     if (!member) {
       throw new ErrorObject('No member found', 404)
     }
-    return member
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
