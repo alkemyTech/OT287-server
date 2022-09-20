@@ -7,8 +7,7 @@ const { catchAsync } = require('../helpers/catchAsync')
 module.exports = {
   post: catchAsync(async (req, res, next) => {
     try {
-      const {name,content,image} = req.body
-      const response = await createTestimonial(name,content,image)
+      const response = await createTestimonial(req.body)
       endpointResponse({
         res,
         message: 'Created Sucefully!',

@@ -1,13 +1,9 @@
 const { ErrorObject } = require('../helpers/error')
 const { Testimonial } = require('../database/models')
 
-exports.createTestimonial = async (name, content, image) => {
+exports.createTestimonial = async (data) => {
     try {
-        const testimonial = await Testimonial.create({
-            name:name,
-            content:content,
-            image:image
-        })
+        const testimonial = await Testimonial.create({...data})
         if (!testimonial) throw new ErrorObject('it was not possible to create testimonials', 400)
         return testimonial
     } catch (error) {
