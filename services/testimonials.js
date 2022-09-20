@@ -1,6 +1,13 @@
 const { ErrorObject } = require('../helpers/error')
 const { Testimonial } = require('../database/models')
 
+exports.createTestimonial = async (data) => {
+    try {
+        return await Testimonial.create({...data})
+    } catch (error) {
+        throw new ErrorObject(error.message, error.statusCode || 500)
+    }
+}
 exports.deleteById = async (testimonialId) => {
   try {
     const testimonial = await Testimonial.destroy({ where: { id: testimonialId } })

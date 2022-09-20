@@ -13,13 +13,14 @@ const router = express.Router()
 
 // example of a route with index controller get function
 router.get('/', get)
+router.use('/testimonials', testimonialsRouter)
 router.use('/auth', authRouter)
 router.use('/organizations', organizationsRouter)
 router.use('/activities', activitiesRouter)
 router.use('/news', entriesRouter)
-router.use('/testimonials', testimonialsRouter)
 router.use('/contacts', contactsRouter)
 router.use('/members', membersRouter)
 router.use('/categories', categoriesRouter)
+
 
 module.exports = router
