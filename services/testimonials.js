@@ -8,7 +8,7 @@ exports.createTestimonial = async (name, content, image) => {
             content:content,
             image:image
         })
-        if (!testimonial) throw new ErrorObject('Error!', 400)
+        if (!testimonial) throw new ErrorObject('it was not possible to create testimonials', 400)
         return testimonial
     } catch (error) {
         throw new ErrorObject(error.message, error.statusCode || 500)
