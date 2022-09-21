@@ -25,3 +25,15 @@ exports.createUser = async (data) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
+
+exports.destroyUser = async (id) => {
+  try {
+    const userToDelete = await User.findOne({ where: { id } })
+    console.log(userToDelete)
+    if (!userToDelete) throw new ErrorObject('the user does not exist', 404)
+    const deleteUser = await userToDelete.destroy()
+    return deleteUser
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
