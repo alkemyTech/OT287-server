@@ -1,5 +1,8 @@
+const { User } = require('../database/models')
+
 function isAdmin(req, res, next) {
-  if (req.roleId !== 1) {
+  const user = User.findById(req.roleId)
+  if (user.name !== 'Admin') {
     return res.status(404).send()
   }
   return next()
