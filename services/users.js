@@ -25,3 +25,14 @@ exports.createUser = async (data) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
+
+exports.getUsers = async () => {
+  try {
+    const allUsers = await User.findAll({
+      include: ['role'],
+    })
+    return allUsers
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
