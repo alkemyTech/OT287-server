@@ -1,7 +1,7 @@
 const createHttpError = require('http-errors')
 const { catchAsync } = require('../helpers/catchAsync')
 const { endpointResponse } = require('../helpers/success')
-const { createUser, destroyUser } = require('../services/users')
+const { createUser, destroyUser, loginUser } = require('../services/users')
 
 module.exports = {
   post: catchAsync(async (req, res, next) => {
@@ -36,6 +36,21 @@ module.exports = {
       const httpError = createHttpError(
         error.statusCode,
         `[Error destroying user] - [user - DELETE]: ${error.message}`,
+      )
+      next(httpError)
+    }
+  }),
+  login: catchAsync(async (req, res, next) => {
+    try {
+      const response = await loginUser(req.body)
+      endpointResponse({
+        res,
+        body: response,
+      })
+    } catch (error) {
+      const httpError = createHttpError(
+        error.statusCode,
+        `[Error logging user] - [user - POST]: ${error.message}`,
       )
       next(httpError)
     }
