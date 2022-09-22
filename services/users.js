@@ -35,3 +35,17 @@ exports.destroyUser = async (id) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
+
+exports.loginUser = async (data) => {
+  try {
+    const user = await User.findOne({ where: { email: data.email } })
+    const match = Boolean(user) && (await bcrypt.compare(data.password, user.password))
+
+    return {
+      ok: match,
+      user: match ? user : null,
+    }
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
