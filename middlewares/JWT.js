@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const { ErrorObject } = require('../helpers/error')
 
 const { SECRET } = process.env
 
@@ -10,13 +11,13 @@ exports.verifyToken = (req, res, next) => {
   try {
     let token = req.headers.authorization
     if (!token) {
-      return res.status(400).send({ msg: 'Invalid token' })
+      throw new ErrorObject('Unauthorized', 401)
     }
     token = token.replace('Bearer ', '')
     jwt.verify(token, SECRET)
     return next()
-  } catch (err) {
-    return res.status(400).send({ errors: err })
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
 exports.decodeToken = (token) => {
