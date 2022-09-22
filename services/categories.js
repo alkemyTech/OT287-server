@@ -29,3 +29,14 @@ exports.updateCategory = async (id, updateInfo) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
+exports.deleteCategory = async (categoryId) => {
+  try {
+    const category = await Category.destroy({ where: { id: categoryId } })
+    if (!category) {
+      throw new ErrorObject('No categoryId found to delete', 404)
+    }
+    return category
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
