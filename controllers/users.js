@@ -45,6 +45,8 @@ module.exports = {
       const response = await loginUser(req.body)
       endpointResponse({
         res,
+        status: response.ok,
+        code: response.ok ? 200 : 401,
         body: response,
       })
     } catch (error) {
