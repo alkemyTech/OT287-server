@@ -1,6 +1,6 @@
 const { ErrorObject } = require('../helpers/error')
 
-const onlyAdmin = (allowedRoleId) => (req, res, next) => {
+const isAdmin = (allowedRoleId) => (req, res, next) => {
   try {
     const admin = req.user.roleId === allowedRoleId
     if (!admin) {
@@ -12,4 +12,4 @@ const onlyAdmin = (allowedRoleId) => (req, res, next) => {
   }
 }
 
-module.exports = onlyAdmin
+module.exports = isAdmin
