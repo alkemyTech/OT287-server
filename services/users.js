@@ -7,7 +7,7 @@ exports.createUser = async (data) => {
     const emailExists = await User.findOne({ where: { email: data.email } })
 
     if (emailExists) {
-      throw new ErrorObject('Email already exist', 404)
+      throw new ErrorObject('Email already exist', 409)
     }
 
     const encryptedPassword = await bcrypt.hash(data.password, 10)
@@ -18,6 +18,7 @@ exports.createUser = async (data) => {
       email: data.email,
       password: encryptedPassword,
       image: data.image,
+      roleId: 2, // All new registrations are 'user' role,
     })
 
     return newUser
