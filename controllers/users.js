@@ -2,6 +2,7 @@ const createHttpError = require('http-errors')
 const { catchAsync } = require('../helpers/catchAsync')
 const { endpointResponse } = require('../helpers/success')
 const { createUser, destroyUser } = require('../services/users')
+const { decodeToken } = require('../middlewares/JWT')
 
 module.exports = {
   post: catchAsync(async (req, res, next) => {
@@ -36,6 +37,22 @@ module.exports = {
       const httpError = createHttpError(
         error.statusCode,
         `[Error destroying user] - [user - DELETE]: ${error.message}`,
+      )
+      next(httpError)
+    }
+  }),
+  get: catchAsync(async (req, res, next) => {
+    try {
+      const response = await decodeToken(req)
+      endpointResponse({
+        res,
+        message: 'User data decoded',
+        body: response,
+      })
+    } catch (error) {
+      const httpError = createHttpError(
+        error.statusCode,
+        `[Error decoding user data] - [user - GET]: ${error.message}`,
       )
       next(httpError)
     }
