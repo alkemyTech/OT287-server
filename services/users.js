@@ -18,6 +18,7 @@ exports.createUser = async (data) => {
       email: data.email,
       password: encryptedPassword,
       image: data.image,
+      roleId: 2, // All new registrations are 'user' role,
     })
 
     return newUser
