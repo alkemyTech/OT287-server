@@ -1,7 +1,7 @@
 const createHttpError = require('http-errors')
 const { catchAsync } = require('../helpers/catchAsync')
 const { endpointResponse } = require('../helpers/success')
-const { createUser, destroyUser } = require('../services/users')
+const { createUser, destroyUser, loginUser } = require('../services/users')
 const { decodeToken } = require('../middlewares/JWT')
 
 module.exports = {
@@ -49,6 +49,23 @@ module.exports = {
       const httpError = createHttpError(
         error.statusCode,
         `[Error decoding user data] - [user - GET]: ${error.message}`,
+      )
+      next(httpError)
+    }
+  }),
+  login: catchAsync(async (req, res, next) => {
+    try {
+      const response = await loginUser(req.body)
+      endpointResponse({
+        res,
+        status: response.ok,
+        code: response.ok ? 200 : 401,
+        body: response,
+      })
+    } catch (error) {
+      const httpError = createHttpError(
+        error.statusCode,
+        `[Error logging user] - [user - POST]: ${error.message}`,
       )
       next(httpError)
     }
