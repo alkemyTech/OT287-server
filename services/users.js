@@ -53,15 +53,3 @@ exports.loginUser = async (data) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
-
-exports.getUserById = async (idUser) => {
-  try {
-    const getUser = await User.findByPk(idUser)
-    if (!getUser) {
-      throw new ErrorObject('No news found', 404)
-    }
-    return getUser
-  } catch (error) {
-    throw new ErrorObject(error.message, error.statusCode || 500)
-  }
-}
