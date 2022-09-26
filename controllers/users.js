@@ -37,7 +37,7 @@ module.exports = {
       next(httpError)
     }
   }),
-  get: catchAsync(async (req, res, next) => {
+  getMe: catchAsync(async (req, res, next) => {
     try {
       const response = await decodeToken(req)
       endpointResponse({
