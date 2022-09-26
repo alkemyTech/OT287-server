@@ -1,7 +1,5 @@
 const { ErrorObject } = require('../helpers/error')
-
-const jwt = require('jsonwebtoken')
-const { SECRET } = process.env
+const { decodeToken } = require('../middlewares/JWT')
 
 const isAdmin = (allowedRoleId) => (req, res, next) => {
   try {
@@ -9,9 +7,7 @@ const isAdmin = (allowedRoleId) => (req, res, next) => {
     if (!token) {
       throw new ErrorObject('Unauthorized', 401)
     }
-    token = token.replace('Bearer ', '')
-    const decodedToken = jwt.verify(token, SECRET)
-    const userRoleId = decodedToken.roleId
+    const userRoleId = decodeToken(token).roleId
    
     if(allowedRoleId.includes(userRoleId)){
       return next()

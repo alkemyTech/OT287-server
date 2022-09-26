@@ -42,7 +42,7 @@ exports.loginUser = async (data) => {
   try {
     const user = await User.findOne({ where: { email: data.email } })
     const match = Boolean(user) && (await bcrypt.compare(data.password, user.password))
-    const tokenSession = generateToken(user)
+    const tokenSession = generateToken(user.toJSON())
 
     return {
       ok: match,
