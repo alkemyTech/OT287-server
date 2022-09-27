@@ -1,7 +1,7 @@
 const { ErrorObject } = require('../helpers/error')
 const { decodeToken } = require('../middlewares/JWT')
 
-exports.isAdmin = (req, res, next) => {
+const isAdmin = () => (req, res, next) => {
   try {
     let token = req.headers.authorization
     if (!token) {
@@ -17,3 +17,4 @@ exports.isAdmin = (req, res, next) => {
   }
 }
 
+module.exports = isAdmin
