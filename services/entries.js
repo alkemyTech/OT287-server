@@ -19,7 +19,7 @@ exports.createEntry = async (data) => {
 exports.getNews = async () => {
   try {
     const news = await Entry.findAll({
-      attributes: ['name', 'image', 'createdAt', 'content'],
+      attributes: ['id', 'name', 'image', 'createdAt', 'content'],
       where: {
         type: 'news',
       },
