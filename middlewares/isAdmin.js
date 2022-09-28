@@ -1,12 +1,17 @@
 const { ErrorObject } = require('../helpers/error')
+const { decodeToken } = require('../middlewares/JWT')
 
-const isAdmin = (allowedRoleId) => (req, res, next) => {
+const isAdmin = () => (req, res, next) => {
   try {
-    const admin = req.user.roleId === allowedRoleId
-    if (!admin) {
-      throw new ErrorObject('Not have access permissions', 404)
+    let token = req.headers.authorization
+    if (!token) {
+      throw new ErrorObject('Unauthorized', 401)
     }
-    return next()
+    const userRoleId = decodeToken(token).roleId
+    if(userRoleId === 1){
+      return next()
+    } 
+    throw new ErrorObject('Credentials not allowed', 404)
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }

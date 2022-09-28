@@ -37,9 +37,13 @@ module.exports = {
       next(httpError)
     }
   }),
-  get: catchAsync(async (req, res, next) => {
+  getMe: catchAsync(async (req, res, next) => {
     try {
-      const response = await decodeToken(req)
+      let token = req.headers.authorization
+      if (!token) {
+        throw new ErrorObject('Unauthorized', 401)
+      }
+      const response = decodeToken(token)
       endpointResponse({
         res,
         message: 'User data decoded',

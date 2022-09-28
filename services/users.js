@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const { ErrorObject } = require('../helpers/error')
 const { User } = require('../database/models')
+const { generateToken } = require('../middlewares/JWT')
 
 exports.createUser = async (data) => {
   try {
@@ -41,10 +42,12 @@ exports.loginUser = async (data) => {
   try {
     const user = await User.findOne({ where: { email: data.email } })
     const match = Boolean(user) && (await bcrypt.compare(data.password, user.password))
+    const tokenSession = generateToken(user.toJSON())
 
     return {
       ok: match,
       user: match ? user : null,
+      token: tokenSession,
     }
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
