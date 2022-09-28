@@ -28,6 +28,17 @@ exports.createUser = async (data) => {
   }
 }
 
+exports.getUsers = async () => {
+  try {
+    const allUsers = await User.findAll({
+      include: ['role'],
+    })
+    return allUsers
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+
 exports.destroyUser = async (id) => {
   try {
     const deleteUser = await User.destroy({ where: { id } })
