@@ -1,6 +1,18 @@
 const { ErrorObject } = require('../helpers/error')
 const { Activity } = require('../database/models')
 
+exports.getActivityById = async (id) => {
+  try {
+    const activity = await Activity.findByPk(id)
+    if (!activity) {
+      throw new ErrorObject('No activity found', 404)
+    }
+    return activity
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+
 exports.editActivity = async (id, data) => {
   try {
     const activity = await Activity.findByPk(id)
