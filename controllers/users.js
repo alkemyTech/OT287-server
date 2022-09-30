@@ -2,7 +2,7 @@ const createHttpError = require('http-errors')
 const { catchAsync } = require('../helpers/catchAsync')
 const { endpointResponse } = require('../helpers/success')
 const {
-  createUser, destroyUser, getUsers, loginUser,
+  createUser, destroyUser, getUsers, loginUser, updateUser,
 } = require('../services/users')
 const { decodeToken } = require('../middlewares/JWT')
 
@@ -90,6 +90,25 @@ module.exports = {
       const httpError = createHttpError(
         error.statusCode,
         `[Error logging user] - [user - POST]: ${error.message}`,
+      )
+      next(httpError)
+    }
+  }),
+  put: catchAsync(async (req, res, next) => {
+    const { id } = req.params
+    const { body } = req
+    try {
+      const response = await updateUser(id, body)
+      endpointResponse({
+        res,
+        code: 200,
+        message: 'User successfully updated',
+        body: response,
+      })
+    } catch (err) {
+      const httpError = createHttpError(
+        err.statusCode,
+        `[Error updating user] - [users/${id} - PUT]: ${err.message}`,
       )
       next(httpError)
     }

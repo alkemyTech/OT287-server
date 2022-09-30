@@ -64,3 +64,31 @@ exports.loginUser = async (data) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
+
+exports.updateUser = async (id, body) => {
+  try {
+    const {
+      firstName, lastName, email, password, image, roleId,
+    } = body
+    const encryptedPassword = await bcrypt.hash(password, 10)
+    const user = await User.findByPk(id)
+    if (!user && user.deleteAt) {
+      throw new ErrorObject('User not found', 404)
+    } else {
+      await user.update(
+        {
+          firstName,
+          lastName,
+          email,
+          password: encryptedPassword,
+          image,
+          roleId,
+        },
+      )
+      await user.save()
+      return user
+    }
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
