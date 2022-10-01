@@ -20,10 +20,20 @@ module.exports = {
         type: Sequelize.STRING
       },
       phone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       email: {
         allowNull: false,
+        type: Sequelize.STRING
+      },
+      fbUrl: {
+        type: Sequelize.STRING
+      },
+      igUrl: {
+
+        type: Sequelize.STRING
+      },
+      ldUrl: {
         type: Sequelize.STRING
       },
       welcomeText: {
