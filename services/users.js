@@ -33,6 +33,9 @@ exports.getUsers = async () => {
     const allUsers = await User.findAll({
       include: ['role'],
     })
+    if (!allUsers || allUsers.length === 0) {
+      throw new ErrorObject('Users not found', 404)
+    }
     return allUsers
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
