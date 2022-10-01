@@ -15,7 +15,7 @@ exports.getOrganization = async (organizationId) => {
       address: organization.address,
       email: organization.email,
       fbUrl: organization.fbUrl,
-      iGUrl: organization.igUrl,
+      igUrl: organization.igUrl,
       ldUrl: organization.ldUrl,
       welcomeText: organization.welcomeText,
       aboutUsText: organization.aboutUsText,
