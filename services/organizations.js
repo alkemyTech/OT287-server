@@ -14,6 +14,9 @@ exports.getInfo = async (organizationId) => {
       phone: organization.phone,
       address: organization.address,
       welcomeText: organization.welcomeText,
+      fbUrl: organization.fbUrl,
+      igUrl: organization.igUrl,
+      ldUrl: organization.ldUrl,
     }
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
