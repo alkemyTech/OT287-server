@@ -2,7 +2,7 @@ const createHttpError = require('http-errors')
 const { catchAsync } = require('../helpers/catchAsync')
 const { endpointResponse } = require('../helpers/success')
 const {
-  createUser, destroyUser, getUsers, loginUser, updateUser,
+  createUser, destroyUser, getUsers, loginUser, updateUser, getUserById,
 } = require('../services/users')
 const { decodeToken } = require('../middlewares/JWT')
 
@@ -109,6 +109,22 @@ module.exports = {
       const httpError = createHttpError(
         err.statusCode,
         `[Error updating user] - [users/${id} - PUT]: ${err.message}`,
+      )
+      next(httpError)
+    }
+  }),
+  getById: catchAsync(async (req, res, next) => {
+    try {
+      const response = await getUserById(req.params.id)
+      endpointResponse({
+        res,
+        message: 'User retrieved successfully',
+        body: response,
+      })
+    } catch (error) {
+      const httpError = createHttpError(
+        error.statusCode,
+        `[Error retrieving user] - [user - GET]: ${error.message}`,
       )
       next(httpError)
     }
