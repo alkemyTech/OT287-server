@@ -13,6 +13,7 @@ exports.getOrganization = async (organizationId) => {
       image: organization.image,
       phone: organization.phone,
       address: organization.address,
+      welcomeText: organization.welcomeText,
     }
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
