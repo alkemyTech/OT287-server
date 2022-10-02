@@ -13,12 +13,6 @@ exports.getOrganization = async (organizationId) => {
       image: organization.image,
       phone: organization.phone,
       address: organization.address,
-      email: organization.email,
-      fbUrl: organization.fbUrl,
-      igUrl: organization.igUrl,
-      ldUrl: organization.ldUrl,
-      welcomeText: organization.welcomeText,
-      aboutUsText: organization.aboutUsText,
     }
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
