@@ -10,6 +10,6 @@ const router = express.Router()
 router.delete('/:id', destroy)
 router.get('/', verifyToken, isAdmin(), get)
 router.put('/:id', put)
-router.get('/:id', getById)
+router.get('/:id', isAdmin(), getById)
 
 module.exports = router
