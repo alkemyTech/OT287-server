@@ -3,7 +3,7 @@ const { Category } = require('../database/models')
 
 exports.getCategories = async () => {
   try {
-    const categories = await Category.findAll({ attributes: ['name'] })
+    const categories = await Category.findAll({ attributes: ['name', 'description'] })
     return categories
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
