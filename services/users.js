@@ -33,6 +33,9 @@ exports.getUsers = async () => {
     const allUsers = await User.findAll({
       include: ['role'],
     })
+    if (!allUsers || allUsers.length === 0) {
+      throw new ErrorObject('Users not found', 404)
+    }
     return allUsers
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
@@ -88,6 +91,18 @@ exports.updateUser = async (id, body) => {
       await user.save()
       return user
     }
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+
+exports.getUserById = async (idUser) => {
+  try {
+    const getUser = await User.findByPk(idUser)
+    if (!getUser) {
+      throw new ErrorObject('No user found', 404)
+    }
+    return getUser
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
