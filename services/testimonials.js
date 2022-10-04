@@ -1,6 +1,18 @@
 const { ErrorObject } = require('../helpers/error')
 const { Testimonial } = require('../database/models')
 
+exports.getTestimonials = async () => {
+  try {
+    const testimonials = await Testimonial.findAll()
+    if (!testimonials) {
+      throw new ErrorObject('No testimonials found', 404)
+    }
+    return testimonials
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+
 exports.createTestimonial = async (data) => {
   try {
     return await Testimonial.create({ ...data })
@@ -37,7 +49,7 @@ exports.getTestimonialById = async (idTestimonial) => {
   try {
     const getTestimonial = await Testimonial.findByPk(idTestimonial)
     if (!getTestimonial) {
-      throw new ErrorObject('No activity found', 404)
+      throw new ErrorObject('No testimonial found', 404)
     }
     return getTestimonial
   } catch (error) {
