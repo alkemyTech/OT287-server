@@ -17,7 +17,7 @@ module.exports = {
       throw new ErrorObject(error.message, 500)
     }
   },
-  registerWelcome: async (email, nombre) => {
+  contactEmail: async (email, nombre) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     const msg = {
       to: email,

@@ -2,13 +2,13 @@ const createHttpError = require('http-errors')
 const { createContact, getContacts } = require('../services/contacts')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
-const { registerWelcome } = require('../services/sendEmail')
+const { contactEmail } = require('../services/sendEmail')
 
 module.exports = {
   post: catchAsync(async (req, res, next) => {
     try {
       const response = await createContact(req.body)
-      await registerWelcome(req.body.email, req.body.name)
+      await contactEmail(req.body.email, req.body.name)
       endpointResponse({
         res,
         message: 'Contact created and retrieved successfully',
