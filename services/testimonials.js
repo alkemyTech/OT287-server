@@ -2,11 +2,11 @@ const { ErrorObject } = require('../helpers/error')
 const { Testimonial } = require('../database/models')
 
 exports.createTestimonial = async (data) => {
-    try {
-        return await Testimonial.create({...data})
-    } catch (error) {
-        throw new ErrorObject(error.message, error.statusCode || 500)
-    }
+  try {
+    return await Testimonial.create({ ...data })
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
 }
 exports.deleteById = async (testimonialId) => {
   try {
@@ -28,6 +28,18 @@ exports.editTestimonial = async (id, data) => {
     }
     const updated = await testimonial.update({ ...data })
     return updated
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+
+exports.getTestimonialById = async (idTestimonial) => {
+  try {
+    const getTestimonial = await Testimonial.findByPk(idTestimonial)
+    if (!getTestimonial) {
+      throw new ErrorObject('No activity found', 404)
+    }
+    return getTestimonial
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
