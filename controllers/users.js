@@ -1,7 +1,6 @@
 const createHttpError = require('http-errors')
 const { catchAsync } = require('../helpers/catchAsync')
 const { endpointResponse } = require('../helpers/success')
-const { registerWelcome } = require('../services/sendEmail')
 const {
   createUser, destroyUser, getUsers, loginUser, updateUser, getUserById,
 } = require('../services/users')
@@ -11,7 +10,6 @@ module.exports = {
   post: catchAsync(async (req, res, next) => {
     try {
       const response = await createUser(req.body)
-      await registerWelcome(req.body.email, req.body.firstName)
       endpointResponse({
         res,
         message: 'User registered successfully',

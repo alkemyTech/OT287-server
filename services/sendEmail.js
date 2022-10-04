@@ -22,9 +22,9 @@ module.exports = {
     const msg = {
       to: email,
       from: process.env.SENDGRID_VERIFIED_EMAIL, // Change to your verified sender
-      subject: 'Bienvenido a ONG Alkemy!',
-      text: 'Text Test',
-      html: `<strong>Bienvenido ${nombre}! Gracias por registrarte en nuestra ONG Alkemy, tus datos han sido validados correctamente, ya puedes logearte!</strong>`,
+      subject: 'Hola!',
+      text: 'Contact Text',
+      html: `<strong>Hola ${nombre}! Gracias por contactarte con nosotros! en que podemos ayudarte? </strong>`,
     }
     try {
       await sgMail.send(msg)
