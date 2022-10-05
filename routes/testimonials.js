@@ -1,7 +1,7 @@
 const express = require('express')
 const {
   post, destroy, put, getById,
-  get, post, destroy, put,
+  get,
 } = require('../controllers/testimonials')
 const { testimonial } = require('../schemas/testimonials')
 const { validate } = require('../middlewares/validations')

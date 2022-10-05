@@ -1,9 +1,6 @@
 const createHttpError = require('http-errors')
 const {
   deleteById, editTestimonial, createTestimonial, getTestimonialById,
-  deleteById,
-  editTestimonial,
-  createTestimonial,
   getTestimonials,
 } = require('../services/testimonials')
 const { endpointResponse } = require('../helpers/success')
