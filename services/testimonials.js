@@ -44,3 +44,15 @@ exports.editTestimonial = async (id, data) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
+
+exports.getTestimonialById = async (idTestimonial) => {
+  try {
+    const getTestimonial = await Testimonial.findByPk(idTestimonial)
+    if (!getTestimonial) {
+      throw new ErrorObject('No testimonial found', 404)
+    }
+    return getTestimonial
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}

@@ -1,5 +1,6 @@
 const express = require('express')
 const {
+  post, destroy, put, getById,
   get, post, destroy, put,
 } = require('../controllers/testimonials')
 const { testimonial } = require('../schemas/testimonials')
@@ -11,5 +12,6 @@ router.get('/', get)
 router.post('/', validate(testimonial), post)
 router.delete('/:id', destroy)
 router.put('/:id', put)
+router.get('/:id', getById)
 
 module.exports = router
