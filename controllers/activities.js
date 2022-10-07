@@ -60,13 +60,14 @@ module.exports = {
 
   post: catchAsync(async (req, res, next) => {
     try {
-      await createActivity({
+      const response = await createActivity({
         ...req.body,
       })
       endpointResponse({
         res,
         code: 201,
         message: 'Activity created successfully',
+        body: response,
       })
     } catch (error) {
       const httpError = createHttpError(

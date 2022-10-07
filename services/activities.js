@@ -43,8 +43,8 @@ exports.editActivity = async (id, data) => {
 
 exports.createActivity = async (newActivity) => {
   try {
-    await Activity.create(newActivity)
-    return
+    const activity = await Activity.create(newActivity)
+    return activity
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }

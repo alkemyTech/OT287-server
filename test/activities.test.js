@@ -15,8 +15,15 @@ let activityTest = {
 }
 
 
-describe('get all activities', () => {
-    it('should get all activities', (done) => {
+describe('GET activities', () => {    
+    let idTest;
+    before(async () => {
+        const newActivity = new Activity(activityTest);
+        await newActivity.save();
+        idTest = newActivity.dataValues.id;
+    })
+
+    it('GET > Happy Path > should get all activities', (done) => {
         chai.request(app)
             .get('/activities')
             .end(function (err, res) {
@@ -24,17 +31,45 @@ describe('get all activities', () => {
                 done();
             });
     });
+    
+    it('GET by ID > Happy Path > should get a specific activity', (done) => {
+        chai.request(app)
+            .get('/activities/' + idTest)
+            .end(function (err, res) {
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    after(async () => {
+        const activity = await Activity.destroy({
+            where: { id: idTest },
+            force: true
+        });
+    });
 });
 
 
-describe('Insert a activity', () => {
+describe('POST activity', () => {
+    let idTest;
 
-    it('should insert a activity', (done) => {
+    it('POST > Happy Path > Should insert an activity in table', (done) => {
         chai.request(app)
             .post('/activities')
             .send(activityTest)
             .end(function (err, res) {
+                idTest = res.body.body.id
                 expect(res).to.have.status(201);
+                done();
+            });
+    });
+
+    it('POST > Empty Body > Should return a validation error, status 400', (done) => {
+        chai.request(app)
+            .post('/activities')
+            .send()
+            .end(function (err, res) {
+                expect(res).to.have.status(400);
                 done();
             });
     });
@@ -42,14 +77,14 @@ describe('Insert a activity', () => {
 
     after(async () => {
         const activity = await Activity.destroy({
-            where: { name: 'test' },
+            where: { id: idTest },
             force: true
         });
     });
 });
 
 
-describe('update the activity', () => {
+describe('PUT activity', () => {
 
     let idTest;
 
@@ -59,18 +94,20 @@ describe('update the activity', () => {
         idTest = newActivity.dataValues.id;
     })
 
-    it('should update name of activity, status 200', (done) => {
+    it('PUT > Happy Path > Should update name of activity, status 200', (done) => {
         chai.request(app)
             .put('/activities/' + idTest)
             .send(activityTest)
             .end(function (err, res) {
                 expect(res.body.body).to.have.property('name').to.be.equal('test');
+                expect(res.body.body).to.have.property('image').to.be.equal('http://something.jpg');
+                expect(res.body.body).to.have.property('content').to.be.equal('Lorem Ipsum...');
                 expect(res).to.have.status(200);
                 done();
             });
     });
 
-    it('Should return activity not exist. status 404', (done) => {
+    it('PUT > Invalid ID > Should return activity does not exist. status 404', (done) => {
         chai.request(app)
             .put('/activities/' + 0)
             .send(activityTest)
@@ -81,7 +118,7 @@ describe('update the activity', () => {
     });
 
 
-    it('should return a validation error, status 400', (done) => {
+    it('PUT > empty body > should return a validation error, status 400', (done) => {
         chai.request(app)
             .put('/activities/' + idTest)
             .send()
@@ -92,12 +129,9 @@ describe('update the activity', () => {
     });
 
     after(async () => {
-        const activity = await Activity.findOne({
-            where: { name: 'test' }
-        });
-        await activity.destroy({
+        const activity = await Activity.destroy({
+            where: { id: idTest },
             force: true
         });
     });
-
 });
