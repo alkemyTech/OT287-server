@@ -59,4 +59,48 @@ describe('Contacts', () => {
       await Contact.sync({ force: true })
     })
   })
+
+  describe('POST /contacts', () => {
+    it('should insert the contact', (done) => {
+      chai
+        .request(app)
+        .post('/contacts')
+        .send(contacts[0])
+        .end(async (err, res) => {
+          expect(res).to.have.status(201)
+
+          const contact = await Contact.findOne({ raw: true, where: { email: contacts[0].email } })
+          expect(contact).to.not.be.null
+          expect(contact.name).to.be.equal(contacts[0].name)
+
+          done()
+        })
+    })
+
+    it('should return error if the name is not sent', (done) => {
+      chai
+        .request(app)
+        .post('/contacts')
+        .send({ email: 'email@gmail.com' })
+        .end((err, res) => {
+          expect(res).to.have.status(400)
+          done()
+        })
+    })
+
+    it('should return error if the email is not sent', (done) => {
+      chai
+        .request(app)
+        .post('/contacts')
+        .send({ name: 'Juan' })
+        .end((err, res) => {
+          expect(res).to.have.status(400)
+          done()
+        })
+    })
+
+    after(async () => {
+      await Contact.sync({ force: true })
+    })
+  })
 })
