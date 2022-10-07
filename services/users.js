@@ -74,17 +74,15 @@ exports.updateUser = async (id, body) => {
       firstName, lastName, email, roleId,
     } = body
     const user = await User.findByPk(id)
-    if (!user && user.deleteAt) {
+    if (!user || user.deleteAt) {
       throw new ErrorObject('User not found', 404)
     } else {
-      await user.update(
-        {
-          firstName,
-          lastName,
-          email,
-          roleId,
-        },
-      )
+      await user.update({
+        firstName,
+        lastName,
+        email,
+        roleId,
+      })
       await user.save()
       return user
     }
