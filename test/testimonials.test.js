@@ -56,9 +56,9 @@ describe('POST /testimonials', () => {
         .post('/testimonials')
         .send(testimonial)
         .end( (err, res) => {
-            expect(res.body.body).to.have.property('name').to.be.equal('Name Example');
-            expect(res.body.body).to.have.property('content').to.be.equal('Content Example');
-            expect(res.body.body).to.have.property('image').to.be.equal('https://image-example.jpg');
+            expect(res.body.body).to.have.property('name').to.be.equal(testimonial.name);
+            expect(res.body.body).to.have.property('content').to.be.equal(testimonial.content);
+            expect(res.body.body).to.have.property('image').to.be.equal(testimonial.image);
             expect(res).to.have.status(200);
             done();
         });
