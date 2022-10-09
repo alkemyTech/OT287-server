@@ -73,6 +73,22 @@ describe('POST activity', () => {
                 done();
             });
     });
+    
+    it('POST > Invalid inputs > Should return a validation error, status 400', (done) => {
+        let invalidActivityTest = {
+            name: "",
+            image: "",
+            content: "",
+        }
+
+        chai.request(app)
+            .post('/activities')
+            .send(invalidActivityTest)
+            .end(function (err, res) {
+                expect(res).to.have.status(400);
+                done();
+            });
+    });
 
 
     after(async () => {
