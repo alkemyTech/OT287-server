@@ -8,7 +8,7 @@ const { validate } = require('../middlewares/validations')
 const router = express.Router()
 
 router.get('/', get)
-router.put('/:id', put)
+router.put('/:id', validate(members), put)
 router.post('/', validate(members), post)
 router.delete('/:id', destroy)
 
