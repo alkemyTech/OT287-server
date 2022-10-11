@@ -2,9 +2,10 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 const expect = require('chai').expect;
 const { Entry, Category } = require('../database/models');
+const app = require('../app')
 
 chai.use(chaiHttp);
-const url= 'http://localhost:3000';
+
 
 let newsTest = {
     name: "test",
@@ -22,7 +23,7 @@ describe('Get all news: ',()=>{
     })
 
     it('should get all news', (done) => {
-        chai.request(url)
+        chai.request(app)
         .get('/news')
         .end( (err,res) => {
             expect(res).to.have.status(200);
@@ -32,7 +33,7 @@ describe('Get all news: ',()=>{
     });
 
     it('should get json news', (done) => {
-        chai.request(url)
+        chai.request(app)
         .get('/news')
         .end( (err,res) => {
             expect(res).to.be.json;
@@ -43,7 +44,7 @@ describe('Get all news: ',()=>{
     
   
     it('should get a new by Id', (done) => {
-        chai.request(url)
+        chai.request(app)
         .get('/news/' + idNewTest)
         .send()
         .end( (err,res) => {
@@ -54,7 +55,7 @@ describe('Get all news: ',()=>{
     });
         
     it('id should be a number', (done) => {
-        chai.request(url)
+        chai.request(app)
         .get('/news/' + idNewTest)
         .send()
         .end( (err,res) => {
@@ -97,7 +98,7 @@ describe('Post a new: ',()=>{
 
 
     it('should post a new', (done) => {
-        chai.request(url)
+        chai.request(app)
         .post('/news')
         .send(newsTestPost)
         .end( (err,res) => {
@@ -108,7 +109,7 @@ describe('Post a new: ',()=>{
     });
 
     it('should post a new with an existing categoryId', (done) => {
-        chai.request(url)
+        chai.request(app)
         .post('/news')
         .send({name: 'novedad', image:'url', content:'contenttext', categoryId: 'falsecategory'})
         .end( (err,res) => {
@@ -118,7 +119,7 @@ describe('Post a new: ',()=>{
     });
 
     it('should post a new with a name, image and content value. If not return error 400', (done) => {
-        chai.request(url)
+        chai.request(app)
         .post('/news')
         .send({name: '', image:'', content:'', categoryId: idTestCategory})
         .end( (err,res) => {
@@ -151,7 +152,7 @@ describe('Update a new: ',()=>{
     }) 
 
     it('should update a new', (done) => {
-        chai.request(url)
+        chai.request(app)
         .put('/news/' + idNewTest)
         .send({ name: 'hola' })
             .end( (err,res) => {
@@ -163,7 +164,7 @@ describe('Update a new: ',()=>{
     });
 
     it('should update an existing new', (done) => {
-        chai.request(url)
+        chai.request(app)
         .put('/news/' + 99999999 )
         .send({ name: 'hola' })
             .end( (err,res) => {
@@ -193,12 +194,12 @@ describe('Delete a new: ',()=>{
     }) 
 
     it('should delete a new', (done) => {
-        chai.request(url)
+        chai.request(app)
         .delete('/news/' + idNewTest)
         .send()
         .end( (err,res) => {
             expect(res).to.have.status(200);
-                chai.request(url)
+                chai.request(app)
                     .get('/news/' + idNewTest)
                     .end( (err,res) => {
                         expect(res).to.have.status(404);
@@ -209,7 +210,7 @@ describe('Delete a new: ',()=>{
     });
 
     it('should delete the correct new', (done) => {
-        chai.request(url)
+        chai.request(app)
         .delete('/news/' + 999999 )
         .send()
         .end( (err,res) => {
