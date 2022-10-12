@@ -1,5 +1,7 @@
 const express = require('express')
-const { getById, put, post, get, destroy } = require('../controllers/activities')
+const { 
+  getById, put, post, get, destroy
+} = require('../controllers/activities')
 const { activities } = require('../schemas/activities')
 const { validate } = require('../middlewares/validations')
 

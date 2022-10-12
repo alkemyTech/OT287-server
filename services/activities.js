@@ -17,11 +17,11 @@ exports.getActivities = async () => {
 
 exports.getActivityById = async (idNew) => {
   try {
-    const getActivity = await Activity.findByPk(idNew)
-    if (!getActivity) {
+    const activity = await Activity.findByPk(idNew)
+    if (!activity) {
       throw new ErrorObject('No activity found', 404)
     }
-    return getActivity
+    return activity
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
@@ -33,6 +33,9 @@ exports.editActivity = async (id, data) => {
     if (!activity) {
       throw new ErrorObject('No activity found', 404)
     }
+    if (!data.name || !data.content) {
+      throw new ErrorObject('missing information', 400)
+    }
     const updated = await activity.update({ ...data })
     return updated
   } catch (error) {
@@ -42,8 +45,8 @@ exports.editActivity = async (id, data) => {
 
 exports.createActivity = async (newActivity) => {
   try {
-    await Activity.create(newActivity)
-    return
+    const activity = await Activity.create(newActivity)
+    return activity
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
