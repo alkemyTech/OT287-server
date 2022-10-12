@@ -3,7 +3,9 @@ const { Activity } = require('../database/models')
 
 exports.getActivities = async () => {
   try {
-    const activities = await Activity.findAll()
+    const activities = await Activity.findAll({
+      attributes: ['id', 'name', 'image', 'content', 'createdAt']
+    })
     if (!activities) {
       throw new ErrorObject('No activities found', 404)
     }
@@ -44,6 +46,18 @@ exports.editActivity = async (id, data) => {
 exports.createActivity = async (newActivity) => {
   try {
     const activity = await Activity.create(newActivity)
+    return activity
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+
+exports.deleteById = async (activityId) => {
+  try {
+    const activity = await Activity.destroy({ where: { id: activityId } })
+    if (!activity) {
+      throw new ErrorObject('No activity found to delete', 404)
+    }
     return activity
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
