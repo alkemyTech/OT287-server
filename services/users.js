@@ -71,7 +71,7 @@ exports.loginUser = async (data) => {
 exports.updateUser = async (id, body) => {
   try {
     const {
-      firstName, lastName, email, roleId,
+      firstName, lastName, email, roleId, image,
     } = body
     const user = await User.findByPk(id)
     if (!user || user.deleteAt) {
@@ -82,9 +82,14 @@ exports.updateUser = async (id, body) => {
         lastName,
         email,
         roleId,
+        image,
       })
-      await user.save()
-      return user
+      const updateUser = await user.save()
+      const token = generateToken(updateUser.toJSON())
+      return {
+        updateUser,
+        token,
+      }
     }
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
