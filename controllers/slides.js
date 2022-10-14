@@ -1,11 +1,11 @@
 const createHttpError = require('http-errors')
 const { 
-  getOrganization, 
-  editOrganization,
-  getOrganizationById,
-  createOrganization,
+  getSlides, 
+  getSlideById,
+  editSlide,
+  createSlide,
   deleteById,
- } = require('../services/organizations')
+ } = require('../services/slides')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
@@ -13,67 +13,67 @@ const { catchAsync } = require('../helpers/catchAsync')
 module.exports = {
   get: catchAsync(async (req, res, next) => {
     try {
-      const response = await getOrganization()
+      const response = await getSlides()
       endpointResponse({
         res,
-        message: 'Organizations retrieved successfully',
+        message: 'Slides retrieved successfully',
         body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving Organizations] - [Organizations - GET]: ${error.message}`,
+        `[Error retrieving Slides] - [Slides - GET]: ${error.message}`,
       )
       next(httpError)
     }
   }),
   getById: catchAsync(async (req, res, next) => {
     try {
-      const response = await getOrganizationById(req.params.id)
+      const response = await getSlideById(req.params.id)
       endpointResponse({
         res,
-        message: 'Organization retrieved successfully',
+        message: 'Slide retrieved successfully',
         body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving Organization] - [Organization - GET]: ${error.message}`,
+        `[Error retrieving Slide] - [Slide - GET]: ${error.message}`,
       )
       next(httpError)
     }
   }),
   put: catchAsync(async (req, res, next) => {
     try {
-      const response = await editOrganization(req.params.id, req.body)
+      const response = await editSlide(req.params.id, req.body)
       endpointResponse({
         res,
-        message: 'Organization updated successfully',
+        message: 'Slide updated successfully',
         body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error updating Organization] - [Organization - PUT]: ${error.message}`,
+        `[Error updating Slide] - [Slide - PUT]: ${error.message}`,
       )
       next(httpError)
     }
   }),
   post: catchAsync(async (req, res, next) => {
     try {
-      const response = await createOrganization({
+      const response = await createSlide({
         ...req.body,
       })
       endpointResponse({
         res,
         code: 201,
-        message: 'Organization created successfully',
+        message: 'Slide created successfully',
         body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error creating Organization] - [Organization - POST]: ${error.message}`,
+        `[Error creating Slide] - [Slide - POST]: ${error.message}`,
       )
       next(httpError)
     }
@@ -83,13 +83,13 @@ module.exports = {
       const response = await deleteById(req.params.id)
       endpointResponse({
         res,
-        message: 'Organization deleted successfully',
+        message: 'Slide deleted successfully',
         body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error deleting Organization] - [Organization - DELETE]: ${error.message}`,
+        `[Error deleting Slide] - [Slide - DELETE]: ${error.message}`,
       )
       next(httpError)
     }
