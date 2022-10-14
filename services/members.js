@@ -14,6 +14,18 @@ exports.getMembers = async () => {
   }
 }
 
+exports.getMembersById = async (id) => {
+  try {
+    const member = await Member.findByPk(id)
+    if (!member) {
+      throw new ErrorObject('No member found', 404)
+    }
+    return member
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
+  }
+}
+
 exports.editMembers = async (id, membersValues) => {
   try {
     const memberToUpdate = await Member.findByPk(id)
