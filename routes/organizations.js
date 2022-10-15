@@ -12,7 +12,7 @@ const router = express.Router()
 // Endpoint to an organization public info
 router.get('/', get)
 router.get('/:id/public', getById)
-router.put('/:id/edit', verifyToken, isAdmin(), put)
+router.put('/:id', verifyToken, isAdmin(), put)
 router.post('/', validate(organizations), post)
 router.delete('/:id', destroy)
 

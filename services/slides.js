@@ -3,7 +3,11 @@ const { Slide } = require('../database/models')
 
 exports.getSlides = async () => {
   try {
-    const slides = await Slide.findAll()
+    const slides = await Slide.findAll({
+      include: [
+          {association: "organization"}
+      ]
+  })
     if (!slides) {
       throw new ErrorObject('No slides found', 404)
     }
@@ -15,7 +19,11 @@ exports.getSlides = async () => {
 
 exports.getSlideById = async (id) => {
   try {
-    const slides = await Slide.findByPk(id)
+    const slides = await Slide.findByPk(id, {
+      include: [
+          {association: "organization"}
+      ]
+  })
     if (!slides) {
       throw new ErrorObject('No slides found', 404)
     }
