@@ -4,7 +4,6 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Organizations', [
       {
-      id: 1,
       name: 'Somos Mas',
       image:'https://i.imgur.com/nIclrvm.png',
       address: 'avenida siempre viva 123',
