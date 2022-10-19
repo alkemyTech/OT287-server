@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Entry.init({
     name: DataTypes.STRING,
-    content: DataTypes.STRING,
+    content: DataTypes.TEXT,
     image: DataTypes.STRING,
     categoryId: DataTypes.INTEGER,
     type: DataTypes.STRING,
