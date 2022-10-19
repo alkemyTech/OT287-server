@@ -5,7 +5,7 @@ module.exports = {
       await queryInterface.bulkInsert('Entries', [
         {
         name: 'Juntos en la vuelta al cole',
-        image: 'https://i.ibb.co/dBh7Tgw/Sin-t-tulo.png',
+        image: 'https://somosmasalkemy.s3.amazonaws.com/news/20221015152856_img1.png',
         content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo',
         categoryId: '1',
         type: 'news',
@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         name: 'Merienda para los mas chicos',
-        image: 'https://i.imgur.com/BRxgAGl.png',
+        image: 'https://somosmasalkemy.s3.amazonaws.com/news/20221015152856_img2.png',
         content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo',
         categoryId: '1',
         type: 'news',
@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         name: 'Se abre convocatoria para clases voluntarias',
-        image: 'https://i.imgur.com/tA5gjJN.png',
+        image: 'https://somosmasalkemy.s3.amazonaws.com/news/20221015152856_img3.png',
         content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo',
         categoryId: '1',
         type: 'news',
@@ -32,7 +32,7 @@ module.exports = {
       },
       {        
         name: 'Participa como coach de deportes infantiles',
-        image: 'https://i.imgur.com/IWsnXO1.jpeg',
+        image: 'https://somosmasalkemy.s3.amazonaws.com/news/20221015152856_img4.png',
         content: 'loLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo',
         categoryId: '1',
         type: 'news',
@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         name: 'Ultima semana de pileta municipal, ¡veni a participar!',
-        image: 'https://i.imgur.com/IDAWrLW.jpeg',
+        image: 'https://somosmasalkemy.s3.amazonaws.com/news/20221015152856_img5.png',
         content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo',
         categoryId: '1',
         type: 'news',
@@ -50,7 +50,7 @@ module.exports = {
       },
       {
         name: 'Taller de habilidades para los mas pequeños',
-        image: 'https://i.imgur.com/9nXwnjQ.png',
+        image: 'https://somosmasalkemy.s3.amazonaws.com/news/20221015152856_img6.png',
         content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo',
         categoryId: '1',
         type: 'news',
@@ -59,7 +59,7 @@ module.exports = {
       },
       {
         name: 'Talleres de arte para niños con carencias',
-        image: 'https://i.imgur.com/aJIvhTV.png',
+        image: 'https://somosmasalkemy.s3.amazonaws.com/news/20221015152856_img7.png',
         content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo',
         categoryId: '1',
         type: 'news',
@@ -68,7 +68,7 @@ module.exports = {
       },
       {
         name: 'Sponsoring de becas, vos podes formar parte',
-        image: 'https://i.imgur.com/hZOyoUb.png',
+        image: 'https://somosmasalkemy.s3.amazonaws.com/news/20221015152856_img8.png',
         content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo',
         categoryId: '1',
         type: 'news',
