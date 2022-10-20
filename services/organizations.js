@@ -28,6 +28,7 @@ exports.getOrganizationById = async (organizationId) => {
       address: organization.address,
       email: organization.email,
       welcomeText: organization.welcomeText,
+      aboutUsText: organization.aboutUsText,
       fbUrl: organization.fbUrl,
       igUrl: organization.igUrl,
       ldUrl: organization.ldUrl,
@@ -70,4 +71,3 @@ exports.deleteById = async (organizationId) => {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
 }
-
