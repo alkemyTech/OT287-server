@@ -4,14 +4,12 @@ const { Slide } = require('../database/models')
 exports.getSlides = async () => {
   try {
     const slides = await Slide.findAll({
-      include: [
-          {association: "organization"}
-      ]
-  })
+      include: [{ association: 'organization' }],
+    })
     if (!slides) {
       throw new ErrorObject('No slides found', 404)
     }
-    return slides
+    return slides.sort((a, b) => a.order - b.order)
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }
@@ -20,10 +18,8 @@ exports.getSlides = async () => {
 exports.getSlideById = async (id) => {
   try {
     const slides = await Slide.findByPk(id, {
-      include: [
-          {association: "organization"}
-      ]
-  })
+      include: [{ association: 'organization' }],
+    })
     if (!slides) {
       throw new ErrorObject('No slides found', 404)
     }
@@ -34,17 +30,17 @@ exports.getSlideById = async (id) => {
 }
 
 exports.editSlide = async (id, newValues) => {
-    try {
-      const slideToUpdate = await Slide.findByPk(id)
-      if (!slideToUpdate) {
-        throw new ErrorObject('No slide found', 404)
-      }
-      const slideUpdated = await slideToUpdate.update({ ...newValues })
-      return slideUpdated
-    } catch (error) {
-      throw new ErrorObject(error.message, error.statusCode || 500)
+  try {
+    const slideToUpdate = await Slide.findByPk(id)
+    if (!slideToUpdate) {
+      throw new ErrorObject('No slide found', 404)
     }
+    const slideUpdated = await slideToUpdate.update({ ...newValues })
+    return slideUpdated
+  } catch (error) {
+    throw new ErrorObject(error.message, error.statusCode || 500)
   }
+}
 
 exports.createSlide = async (newSlide) => {
   try {
