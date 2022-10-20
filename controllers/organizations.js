@@ -1,11 +1,11 @@
 const createHttpError = require('http-errors')
-const { 
-  getOrganization, 
+const {
+  getOrganization,
   editOrganization,
   getOrganizationById,
   createOrganization,
   deleteById,
- } = require('../services/organizations')
+} = require('../services/organizations')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 

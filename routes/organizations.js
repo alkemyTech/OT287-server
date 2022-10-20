@@ -1,6 +1,6 @@
 const express = require('express')
-const { 
-    get, getById, put, post, destroy
+const {
+  get, getById, put, post, destroy,
 } = require('../controllers/organizations')
 const { verifyToken } = require('../middlewares/JWT')
 const isAdmin = require('../middlewares/isAdmin')
