@@ -27,7 +27,7 @@ exports.getNews = async () => {
     if (!news) {
       throw new ErrorObject('No news found', 404)
     }
-    return news
+    return news.reverse()
   } catch (error) {
     throw new ErrorObject(error.message, error.statusCode || 500)
   }

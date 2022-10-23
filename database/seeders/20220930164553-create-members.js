@@ -33,7 +33,7 @@ module.exports = {
           },
           {          
             name: "Lucas Salas",
-            image: "https://i.imgur.com/lfgeM7Z.jpeg",
+            image: "https://i.imgur.com/lyd5XrQ.jpeg",
           },
           {          
             name: "Agustín López",
